@@ -46,10 +46,11 @@ fs.readFile(filename, 'utf8', function (err, data) {
         });
 
         // Note that this isn't really failsafe!
-        // I just assume the values array has a length of 3.
-        var l = values[0];
-        var w = values[1];
-        var h = values[2];
+        // 1. I just assume the values array has a length of 3.
+        // 2. I assume every value can be parsed to an int as well.
+        var l = parseInt(values[0], 10);
+        var w = parseInt(values[1], 10);
+        var h = parseInt(values[2], 10);
 
         // Since the array is ordered, we can just use l * w for calculating the slack.
         var lineResult = (l * w) + (2 * l * w) + (2 * w * h) + (2 * h * l);
@@ -59,4 +60,3 @@ fs.readFile(filename, 'utf8', function (err, data) {
 
     console.log('The elves should order ' + result + ' square feet of wrapping paper.');
 });
-
